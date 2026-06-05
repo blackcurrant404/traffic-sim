@@ -10,5 +10,6 @@ def csv_to_dictionary():
                 "correct_password": line[1],
                 "wrong_passwords": line[2:]
             }
-                
+
+    print(users)        
     return users
