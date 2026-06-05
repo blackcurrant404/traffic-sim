@@ -5,25 +5,27 @@ from time import sleep
 url = "http://127.0.0.1:5000/login"
 
 def generate_auth_traffic(users: dict):
- 
-    user = choose_user_randomly(users)
-    for x in range(6):
-        password = choose_password_randomly(user, users)
+    
+    while True:
+        user = choose_user_randomly(users)
+        for x in range(6):
+            password = choose_password_randomly(user, users)
 
-        payload = {
-            "username": user,
-            "password": password
-        }
-        response = requests.post(url, data=payload)
-        
-        if is_login_successful(response):
-            print("Login successful")
-            sleep(60)
-            return
-        sleep(5)
+            payload = {
+                "username": user,
+                "password": password
+            }
+            response = requests.post(url, data=payload)
+            
+            if is_login_successful(response):
+                print("Login successful")
+                sleep(random.randint(10, 60))
+                break
+            else:
+                print("Login failed")
+                sleep(random.randint(2, 7))
+        sleep(random.randint(10, 60))
 
-    print("Login failed")
-    sleep(60)
 
 def choose_user_randomly(users: dict):
     namelist = []
