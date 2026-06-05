@@ -1,5 +1,6 @@
 import random
 import requests
+from time import sleep
 
 url = "http://127.0.0.1:5000/login"
 
@@ -17,9 +18,12 @@ def generate_auth_traffic(users: dict):
         
         if is_login_successful(response):
             print("Login successful")
+            sleep(60)
             return
+        sleep(5)
 
     print("Login failed")
+    sleep(60)
 
 def choose_user_randomly(users: dict):
     namelist = []
