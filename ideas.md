@@ -1,0 +1,1 @@
+Idea is to build a traffic simulator that can be used in a security testing lab to simulate normal user authentication traffic. It can later be used to test whether the server or analyzer can detect malicious login attempts within normal traffic.
