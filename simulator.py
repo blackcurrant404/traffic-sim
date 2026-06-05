@@ -1,11 +1,35 @@
 import random
+import requests
 
-def generate_auth_traffic():
-    pass
+url = "http://127.0.0.1:5000/login"
 
-def choose_password_randomly(users: dict):
-    for name, x in users.items():
-        passwords = users[name]["wrong_passwords"]
-        passwords.append(users[name]["correct_password"])
-        y = random.choice(passwords)
-    return y
+def generate_auth_traffic(users: dict):
+    
+    user = choose_user_randomly(users)
+    for x in range(6):
+        password = choose_password_randomly(user, users)
+
+        payload = {
+            "username": user,
+            "password": password
+        }
+        response = requests.post(url, data=payload)
+        
+        if is_login_successful(response):
+            print("Login successful")
+            return
+
+    print("Login failed")
+
+def choose_user_randomly(users: dict):
+    namelist = []
+    for username, x in users.items():
+        namelist.append(username)
+    return random.choice(namelist)
+
+def choose_password_randomly(username: str, users: dict):
+    passwords = users[username]["wrong_passwords"] + [users[username]["correct_password"]] 
+    return random.choice(passwords)
+
+def is_login_successful(response):
+    return "successful" in response.text
