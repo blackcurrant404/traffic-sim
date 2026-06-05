@@ -28,10 +28,7 @@ def generate_auth_traffic(users: dict):
 
 
 def choose_user_randomly(users: dict):
-    namelist = []
-    for username, x in users.items():
-        namelist.append(username)
-    return random.choice(namelist)
+    return random.choice(list(users.keys()))
 
 def choose_password_randomly(username: str, users: dict):
     passwords = users[username]["wrong_passwords"] + [users[username]["correct_password"]] 
