@@ -1,0 +1,23 @@
+{
+    "login_url": "http://127.0.0.1:5000/login",
+    
+    "user_profiles": {
+
+        "aggressive": {
+            "delay": {"min": 2, "max": 10},
+            "retries": 10
+        },
+
+        "normal": {
+            "delay": {"min": 3, "max": 15},
+            "retries": 4
+        },
+
+        "idle": {
+            "delay": {"min": 20, "max": 60},
+            "retries": 3
+        }
+    },
+
+    "session_break": {"min": 10, "max": 60}
+}
